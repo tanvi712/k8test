@@ -68,7 +68,9 @@ pipeline {
 	kubectl apply -f services.yaml
 	kubectl get pods
 	kubectl get services
-	minikube addons enable dashboard
+	minikube addons enable metrics-server
+	minikube dashboard
+	
 	'''
   }
 }
