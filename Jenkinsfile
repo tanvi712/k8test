@@ -60,7 +60,18 @@ pipeline {
     }*/
 	  stage('Deploy to Kubernetes') {
   steps {
-    bat 'kubectl apply -f deployment.yaml'
+    bat '''
+	minikube delete
+	minikube start
+	minikube image load tanvipendam/indiaproj:1.0
+	kubectl apply -f deployment.yaml
+	kubectl apply -f services.yaml
+	kubectl get pods
+	kubectl get services
+	minikube dashboard
+	
+	
+	'''
   }
 }
 
